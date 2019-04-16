@@ -1,4 +1,19 @@
 <!DOCTYPE html>
-<p>
-  I'm alive!!!
-</p>
+<form>
+
+  <!--Input for player's name-->
+  <div class="form-group">
+    <label for="inputName">Please, tell us your name</label>
+    <input type="name" class="form-control" placeholder="Player's name">
+    <small class="form-text text-muted">Player's name to display.</small>
+  </div>
+
+  <!--Input for questions -->
+  <div class="form-group">
+    <form class="range-field">
+      <label for="customRange1">Choose ammount of questions</label>
+      <input type="range" class="custom-range" id="questionRange" min="0" max="40">
+    </form>
+  </div>
+
+</form>
