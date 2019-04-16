@@ -9,11 +9,13 @@
   </div>
 
   <!--Input for questions -->
-  <div class="form-group">
-    <form class="range-field">
-      <label for="customRange1">Choose ammount of questions</label>
-      <input type="range" class="custom-range" id="questionRange" min="0" max="40">
-    </form>
-  </div>
+  <mat-slider
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1000"
+  min="1"
+  max="40"></mat-slider>
+
+
 
 </form>
