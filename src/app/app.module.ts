@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { APP_ROUTING } from './app.routes'
 
 import { AppComponent } from './app.component';
-import { InputformComponent } from './inputform/inputform.component';
+import { InputformComponent } from './components/inputform/inputform.component';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { GestureConfig } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

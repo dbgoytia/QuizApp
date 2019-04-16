@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 // Main applications:
-import { InputformComponent } from './inputform/inputform.component';
+import { InputformComponent } from './components/inputform/inputform.component';
 var APP_ROUTES = [
     { path: 'prinicpal', component: InputformComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'principal' }
