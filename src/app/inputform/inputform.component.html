@@ -8,13 +8,22 @@
     <small class="form-text text-muted">Player's name to display.</small>
   </div>
 
+  <hr>
+
   <!--Input for questions -->
+  <label for="inputQuestions">How many questions do you want to play with?</label>
   <mat-slider
   thumbLabel
   [displayWith]="formatLabel"
   tickInterval="1000"
   min="1"
   max="40"></mat-slider>
+
+  <hr>
+
+  <div class="text-right">
+    <button type="button" class="btn btn-outline-success">Start</button>
+  </div>
 
 
 
