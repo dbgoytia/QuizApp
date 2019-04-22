@@ -17,12 +17,13 @@
   [displayWith]="formatLabel"
   tickInterval="1000"
   min="1"
-  max="40"></mat-slider>
+  max="10"></mat-slider>
 
   <hr>
 
   <div class="text-right">
-    <button type="button" class="btn btn-outline-success">Start</button>
+    <button type="button" class="btn btn-outline-success"
+    (click) = "getQuestions()">Start</button>
   </div>
 
 

@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
 
 @Component({
-  selector: 'app-inputform',
-  templateUrl: './inputform.component.html',
-  styleUrls: ['./inputform.component.css']
+  selector: 'app-questionnaire',
+  templateUrl: './questionnaire.component.html',
+  styleUrls: ['./questionnaire.component.css']
 })
-export class InputformComponent implements OnInit {
+export class QuestionnaireComponent implements OnInit {
 
   constructor(private getQuestionsSerivceService:GetQuestionsSerivceService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   public getQuestions():void{
     this.getQuestionsSerivceService.get_questions();
