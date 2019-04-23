@@ -3,6 +3,15 @@ require 'json'
 require 'sinatra'
 
 
+before do
+   content_type :json
+   headers 'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+end
+
+set :protection, false
+
+
 get '/getScores' do
   URL_LAMBDAS = "https://74js1u1ok0.execute-api.us-west-2.amazonaws.com/default/getScores"
   connection = Faraday.new
