@@ -17,12 +17,23 @@ export class GetQuestionsSerivceService {
     };
   }
 
-  get_questions(questions:number){
+  get_questions(questions:number): Promise<any> {
     let URL = `https://calm-woodland-44552.herokuapp.com/getQuestions/${ questions }`;
     console.log(URL);
-    this.httpClient.get(URL).subscribe((res) =>{
-      console.log(res);
+    let promise = new Promise ((resolve, reject) => {
+      this.httpClient.get(URL).toPromise()
+      .then(
+        res => {
+          // Success code
+          resolve(res);
+        },
+        msg => {
+          // Error message
+          reject(msg);
+        }
+      );
     });
+    return promise;
   }
 
 }

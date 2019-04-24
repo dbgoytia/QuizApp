@@ -13,11 +13,20 @@ var GetQuestionsSerivceService = /** @class */ (function () {
         };
     }
     GetQuestionsSerivceService.prototype.get_questions = function (questions) {
+        var _this = this;
         var URL = "https://calm-woodland-44552.herokuapp.com/getQuestions/" + questions;
         console.log(URL);
-        this.httpClient.get(URL).subscribe(function (res) {
-            console.log(res);
+        var promise = new Promise(function (resolve, reject) {
+            _this.httpClient.get(URL).toPromise()
+                .then(function (res) {
+                // Success code
+                resolve(res);
+            }, function (msg) {
+                // Error message
+                reject(msg);
+            });
         });
+        return promise;
     };
     GetQuestionsSerivceService = tslib_1.__decorate([
         Injectable({

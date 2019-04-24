@@ -4,18 +4,32 @@ import { GetQuestionsSerivceService } from '../../services/get-questions-serivce
 var InputformComponent = /** @class */ (function () {
     function InputformComponent(getQuestionsSerivceService) {
         this.getQuestionsSerivceService = getQuestionsSerivceService;
-        this.questions = 0;
+        this.numberOfQuestions = 0;
     }
     InputformComponent.prototype.ngOnInit = function () { };
     InputformComponent.prototype.getQuestions = function () {
+        var _this = this;
         console.log(document.getElementById('username').value);
-        console.log('Questions requested (questions) = ' + this.questions);
-        this.getQuestionsSerivceService.get_questions(this.questions);
+        console.log('Questions requested (questions) = ' + this.numberOfQuestions);
+        new Promise(function (resolve, reject) {
+            var _res = _this.getQuestionsSerivceService.get_questions(_this.numberOfQuestions)
+                .then(function (res) {
+                // Success
+                console.log("Questions promise:");
+                console.log(res);
+                _this.questions = res;
+                console.log("Test2");
+                console.log(_this.questions);
+            }, function (msg) {
+                // Error
+                reject(msg);
+            });
+        });
     };
     InputformComponent.prototype.questionNumber = function (event) {
         console.log('Value changed > number of questions:');
         console.log(event.value);
-        this.questions = event.value;
+        this.numberOfQuestions = event.value;
     };
     InputformComponent = tslib_1.__decorate([
         Component({
