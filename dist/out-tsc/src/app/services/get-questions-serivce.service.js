@@ -1,13 +1,21 @@
 import * as tslib_1 from "tslib";
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 var GetQuestionsSerivceService = /** @class */ (function () {
     function GetQuestionsSerivceService(httpClient) {
         this.httpClient = httpClient;
-        this.URL = 'https://calm-woodland-44552.herokuapp.com/getQuestions/2';
+        var httpOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'authkey',
+                'userid': '1'
+            })
+        };
     }
-    GetQuestionsSerivceService.prototype.get_questions = function () {
-        this.httpClient.get(this.URL).subscribe(function (res) {
+    GetQuestionsSerivceService.prototype.get_questions = function (questions) {
+        var URL = "https://calm-woodland-44552.herokuapp.com/getQuestions/" + questions;
+        console.log(URL);
+        this.httpClient.get(URL).subscribe(function (res) {
             console.log(res);
         });
     };

@@ -7,9 +7,6 @@ var QuestionnaireComponent = /** @class */ (function () {
     }
     QuestionnaireComponent.prototype.ngOnInit = function () {
     };
-    QuestionnaireComponent.prototype.getQuestions = function () {
-        this.getQuestionsSerivceService.get_questions();
-    };
     QuestionnaireComponent = tslib_1.__decorate([
         Component({
             selector: 'app-questionnaire',

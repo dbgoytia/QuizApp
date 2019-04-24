@@ -8,12 +8,22 @@ import { GetQuestionsSerivceService } from '../../services/get-questions-serivce
 })
 export class InputformComponent implements OnInit {
 
+  questions:number = 0;
+
   constructor(private getQuestionsSerivceService:GetQuestionsSerivceService) { }
 
   ngOnInit() { }
 
   public getQuestions():void{
-    this.getQuestionsSerivceService.get_questions();
+    console.log((document.getElementById('username') as HTMLInputElement).value);
+    console.log('Questions requested (questions) = ' + this.questions);
+    this.getQuestionsSerivceService.get_questions(this.questions);
+  }
+
+  questionNumber(event:any){
+    console.log('Value changed > number of questions:');
+    console.log(event.value);
+    this.questions = event.value;
   }
 
 }

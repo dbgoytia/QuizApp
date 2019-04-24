@@ -13,8 +13,5 @@ export class QuestionnaireComponent implements OnInit {
   ngOnInit() {
   }
 
-  public getQuestions():void{
-    this.getQuestionsSerivceService.get_questions();
-  }
 
 }
