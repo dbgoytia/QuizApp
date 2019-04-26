@@ -19,14 +19,25 @@ get '/getScores' do
   return response.body
 end
 
-get '/insertScore' do
-  url_lambda = "https://mbx4dy66a6.execute-api.us-west-2.amazonaws.com/default/scores"
-  payload = {"initials": "MARK", "questions": 5, "score": 99}
-  puts "HOLIZ"
-  puts payload
-  connection = Faraday.new
-  response = connection.post url_lambda, payload
-  return response.body
+post '/insertScore' do
+
+  body = JSON.parse(request.body.read)
+
+  if body and body["initials"] and body["questions"] and body["score"]
+
+    initials = body["initials"]
+    questions = body["questions"]
+    score = body["score"]
+
+    url_lambda = "https://mbx4dy66a6.execute-api.us-west-2.amazonaws.com/default/scores"
+    payload = JSON.generate({"initials": initials, "questions": questions, "score": score})
+    puts payload
+    connection = Faraday.new
+    response = connection.post url_lambda, payload
+    return response.body
+  else
+    return JSON.generate({"message": "Verify data"})
+  end
 end
 
 get '/getQuestions/:number' do
