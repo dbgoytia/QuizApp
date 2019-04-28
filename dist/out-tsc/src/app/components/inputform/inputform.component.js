@@ -15,10 +15,10 @@ var InputformComponent = /** @class */ (function () {
             var _res = _this.getQuestionsSerivceService.get_questions(_this.numberOfQuestions)
                 .then(function (res) {
                 // Success
-                console.log("Questions promise:");
+                console.log("Questions promise return value:");
                 console.log(res);
                 _this.questions = res;
-                console.log("Test2");
+                console.log("Value in questions variable (in memory result)");
                 console.log(_this.questions);
             }, function (msg) {
                 // Error

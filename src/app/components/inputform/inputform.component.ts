@@ -18,16 +18,15 @@ export class InputformComponent implements OnInit {
   public getQuestions() : any{
     console.log((document.getElementById('username') as HTMLInputElement).value);
     console.log('Questions requested (questions) = ' + this.numberOfQuestions);
-
     new Promise ((resolve, reject) => {
       let _res = this.getQuestionsSerivceService.get_questions(this.numberOfQuestions)
       .then(
         res => {
           // Success
-          console.log("Questions promise:");
+          console.log("Questions promise return value:");
           console.log(res);
           this.questions = res;
-          console.log("Test2");
+          console.log("Value in questions variable (in memory result)");
           console.log(this.questions);
 
         },
