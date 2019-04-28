@@ -1,9 +1,11 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
+import { Router } from '@angular/router';
 var InputformComponent = /** @class */ (function () {
-    function InputformComponent(getQuestionsSerivceService) {
+    function InputformComponent(getQuestionsSerivceService, router) {
         this.getQuestionsSerivceService = getQuestionsSerivceService;
+        this.router = router;
         this.numberOfQuestions = 0;
     }
     InputformComponent.prototype.ngOnInit = function () { };
@@ -31,13 +33,18 @@ var InputformComponent = /** @class */ (function () {
         console.log(event.value);
         this.numberOfQuestions = event.value;
     };
+    InputformComponent.prototype.goto = function (pagename) {
+        console.log('Moving to page: ' + pagename);
+        this.router.navigate([pagename]);
+    };
     InputformComponent = tslib_1.__decorate([
         Component({
             selector: 'app-inputform',
             templateUrl: './inputform.component.html',
             styleUrls: ['./inputform.component.css']
         }),
-        tslib_1.__metadata("design:paramtypes", [GetQuestionsSerivceService])
+        tslib_1.__metadata("design:paramtypes", [GetQuestionsSerivceService,
+            Router])
     ], InputformComponent);
     return InputformComponent;
 }());

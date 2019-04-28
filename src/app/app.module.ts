@@ -11,14 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { GetQuestionsSerivceService } from './services/get-questions-serivce.service';
+import { QuestionsComponent } from './components/questions/questions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputformComponent,
-    QuestionnaireComponent
+    QuestionsComponent
   ],
   imports: [
     MatSelectModule,

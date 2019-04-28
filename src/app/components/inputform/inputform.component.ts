@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-inputform',
@@ -11,7 +13,9 @@ export class InputformComponent implements OnInit {
   numberOfQuestions:number = 0;
   questions:any;
 
-  constructor(private getQuestionsSerivceService:GetQuestionsSerivceService) { }
+  constructor(
+    private getQuestionsSerivceService:GetQuestionsSerivceService,
+    private router: Router) { }
 
   ngOnInit() { }
 
@@ -43,5 +47,11 @@ export class InputformComponent implements OnInit {
     console.log(event.value);
     this.numberOfQuestions = event.value;
   }
+
+  goto(pagename:string){
+    console.log('Moving to page: ' + pagename);
+    this.router.navigate([pagename]);
+  }
+
 
 }

@@ -14,6 +14,7 @@ var GetQuestionsSerivceService = /** @class */ (function () {
     }
     GetQuestionsSerivceService.prototype.get_questions = function (questions) {
         var _this = this;
+        console.log('Fetching ' + questions + ' questions.');
         var URL = "https://calm-woodland-44552.herokuapp.com/getQuestions/" + questions;
         console.log(URL);
         var promise = new Promise(function (resolve, reject) {

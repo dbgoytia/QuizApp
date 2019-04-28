@@ -18,6 +18,7 @@ export class GetQuestionsSerivceService {
   }
 
   get_questions(questions:number): Promise<any> {
+    console.log('Fetching ' +questions + ' questions.');
     let URL = `https://calm-woodland-44552.herokuapp.com/getQuestions/${ questions }`;
     console.log(URL);
     let promise = new Promise ((resolve, reject) => {
