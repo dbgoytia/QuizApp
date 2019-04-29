@@ -47,7 +47,6 @@ export class InputformComponent implements OnInit {
           this.globals.questions = this.questions
           console.log("Global value: ");
           console.log(this.globals.questions);
-          //this.gotoQuestions('questions', [this.questions, 'master']);
           this.newMessage(this.questions);
         },
         msg => {

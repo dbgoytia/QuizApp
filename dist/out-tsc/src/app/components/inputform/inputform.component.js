@@ -33,7 +33,6 @@ var InputformComponent = /** @class */ (function () {
                 _this.globals.questions = _this.questions;
                 console.log("Global value: ");
                 console.log(_this.globals.questions);
-                //this.gotoQuestions('questions', [this.questions, 'master']);
                 _this.newMessage(_this.questions);
             }, function (msg) {
                 // Error

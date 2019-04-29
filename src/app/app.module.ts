@@ -13,12 +13,16 @@ import { MatSelectModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { GetQuestionsSerivceService } from './services/get-questions-serivce.service';
 import { QuestionsComponent } from './components/questions/questions.component';
+import { JsonPipePipe } from './pipes/json-pipe.pipe';
+import { QuestionComponent } from './components/question/question.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputformComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    JsonPipePipe,
+    QuestionComponent
   ],
   imports: [
     MatSelectModule,

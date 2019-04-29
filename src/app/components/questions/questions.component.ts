@@ -1,49 +1,45 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AppGlobal } from '../../app.global';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { JsonPipePipe } from '../../pipes/json-pipe.pipe';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css'],
-  providers: [
-    AppGlobal
-  ]
 })
-export class QuestionsComponent implements OnInit {
 
-  @Input() questions: any;
-  @Input() parent: string;
+export class QuestionsComponent implements OnInit {
 
   message: any;
 
   constructor(
-    private globals: AppGlobal,
-    private data: DataService
+    private data: DataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
 
     this.data.currentMessage.subscribe(message => this.message = message);
-    console.log("Accessing datasource in rxjs");
-
-    console.log(this.viewMessage());
+    console.log(this.loading());
 
   }
 
 
-  async viewMessage(){
-    console.log("Waiting for response")
+  async loading(){
     await this.delay(9000);
-    console.log("View message: ")
-    console.log(this.message);
+    console.log("Loading...");
+    this.goto('question');
   }
 
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-
+  goto(pagename:string){
+    console.log('Moving to page: ' + pagename);
+    this.router.navigate([pagename]);
+  }
 
 }
