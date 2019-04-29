@@ -53,10 +53,29 @@ post '/checkAnswers' do
   if body and body["question"] and body["answers"]
 
     questions = body["question"]
-    score = body["answers"]
+    answers = body["answers"]
 
     url_lambda = "https://jg7zg1x7n6.execute-api.us-west-2.amazonaws.com/default/checkAnswers"
-    payload = JSON.generate({"question": questions, "answers": score})
+    payload = JSON.generate({"question": questions, "answers": answers})
+    puts payload
+    connection = Faraday.new
+    response = connection.post url_lambda, payload
+    return response.body
+  else
+    return JSON.generate({"message": "Verify data"})
+  end
+end
+
+
+post '/sendMessage' do
+  body = JSON.parse(request.body.read)
+  if body and body["tel"] and body["score"]
+
+    tel = body["tel"]
+    score = body["score"]
+
+    url_lambda = "https://och5m9rys4.execute-api.us-west-2.amazonaws.com/default/sendMessage"
+    payload = JSON.generate({"tel": tel, "score": score})
     puts payload
     connection = Faraday.new
     response = connection.post url_lambda, payload
