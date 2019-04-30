@@ -11,6 +11,7 @@ import { JsonPipePipe } from '../../pipes/json-pipe.pipe';
 export class QuestionComponent implements OnInit {
 
   message: any;
+  numero: number = 0;
 
   constructor(
     private data: DataService
@@ -20,6 +21,10 @@ export class QuestionComponent implements OnInit {
     this.data.currentMessage.subscribe(message => this.message = message);
     console.log("Current message: ");
     console.log(this.message);
+  }
+
+  nextQuestion(){
+    this.numero += 1;
   }
 
 }

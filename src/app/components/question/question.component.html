@@ -2,6 +2,23 @@
 <html lang="en" dir="ltr">
 
 <div class="row">
+  <p>{{ numero }}</p>
+  <div class="card" style="width: 100%;">
+    <div class="card-body">
+      <h4 class="card-title"> {{ message[numero].question }}</h4>
+      <div class="card-body" *ngFor= "let p of message[numero].posibleAnswer; let i = index">
+        <p>{{p}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button"
+ name="button"
+ (click)="nextQuestion()">Suma!</button>
+
+<!---
+<div class="row">
   <div class="card" style="width: 100%;" *ngFor="let x of message">
     <div class="card-body">
       <h4 class="card-title">{{ x.question }}</h4>
@@ -14,5 +31,5 @@
     </div>
   </div>
 </div>
-
+-->
 </html>
