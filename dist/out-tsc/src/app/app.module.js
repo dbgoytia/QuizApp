@@ -14,6 +14,7 @@ import { GetQuestionsSerivceService } from './services/get-questions-serivce.ser
 import { QuestionsComponent } from './components/questions/questions.component';
 import { JsonPipePipe } from './pipes/json-pipe.pipe';
 import { QuestionComponent } from './components/question/question.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -32,7 +33,9 @@ var AppModule = /** @class */ (function () {
                 BrowserModule,
                 BrowserAnimationsModule,
                 APP_ROUTING,
-                HttpClientModule
+                HttpClientModule,
+                ReactiveFormsModule,
+                FormsModule
             ],
             providers: [
                 GetQuestionsSerivceService,
