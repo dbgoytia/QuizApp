@@ -17,6 +17,7 @@ import { JsonPipePipe } from './pipes/json-pipe.pipe';
 import { QuestionComponent } from './components/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckAnswersService } from './services/check-answers.service';
+import { ScoreBoardComponent } from './components/score-board/score-board.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CheckAnswersService } from './services/check-answers.service';
     InputformComponent,
     QuestionsComponent,
     JsonPipePipe,
-    QuestionComponent
+    QuestionComponent,
+    ScoreBoardComponent
   ],
   imports: [
     MatSelectModule,

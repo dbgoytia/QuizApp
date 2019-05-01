@@ -26,12 +26,21 @@
   <hr>
 
   <!-- Get questions and store player's name -->
-  <div class="text-right">
-    <button
-    type="button" class="btn btn-outline-success"
-    (click) = "getQuestions(); gotoQuestions('questions');">
-    Start</button>
-  </div>
+    <div class="container">
+      <button
+      type="button" class="btn btn-outline-success" style="float: left"
+      (click) = "getQuestions(); gotoQuestions('scoreboard');">
+      Scoreboard</button>
+
+    <!-- Get questions and store player's name -->
+      <button
+      type="button"
+      class="btn btn-outline-success"
+      style="float: right"
+      (click) = "getQuestions(); gotoQuestions('questions');">
+      Start</button>
+    </div>
+
 
 
 
