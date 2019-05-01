@@ -78,7 +78,7 @@ export class QuestionComponent implements OnInit {
           this.graded_answers = JSON.stringify(res.gradedAnswers);
           this.correct_answers = JSON.stringify(res.correctAnswers);
           console.log("Graded Answers:");
-          console.log(this.graded_answers)
+          console.log(this.graded_answers);
           console.log(this.correct_answers);
         },
         msg => {
