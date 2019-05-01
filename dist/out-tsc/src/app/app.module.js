@@ -15,6 +15,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { JsonPipePipe } from './pipes/json-pipe.pipe';
 import { QuestionComponent } from './components/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckAnswersService } from './services/check-answers.service';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -39,6 +40,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 GetQuestionsSerivceService,
+                CheckAnswersService,
                 { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
             ],
             bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { JsonPipePipe } from '../../pipes/json-pipe.pipe';
 import { FormBuilder, FormGroup, FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
-
+import { CheckAnswersService } from '../../services/check-answers.service';
 
 @Component({
   selector: 'app-question',
@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit {
 
   constructor(
     private data: DataService,
+    private checkAnswers: CheckAnswersService,
     private fb: FormBuilder
   ) { }
 
@@ -44,10 +45,35 @@ export class QuestionComponent implements OnInit {
     const selectedAnswers = this.answers.value.posibleAnswers
     .map((checked, index) => checked ? this.posibleAnswers[index] : null)
     .filter(value => value !== null );
-    console.log("Selected Answers");
-    console.log(selectedAnswers);
-  }
 
+    console.log("Given question:");
+    let question = this.message[this.numero].question;
+    console.log(question);
+
+    console.log("Selected Answers:");
+    console.log(selectedAnswers);
+
+    let payload = {
+      question: question,
+      answers: selectedAnswers
+    }
+
+    console.log(payload);
+
+
+    new Promise ((resolve, reject) =>{
+      let res = this.checkAnswers.check_anwers(JSON.stringify(payload))
+      .then(
+        res =>{
+          console.log("Graded answers response from lambda: ");
+          console.log(res);
+        },
+        msg => {
+          reject(msg)
+        }
+      );
+    });
+  }
 
 
 }

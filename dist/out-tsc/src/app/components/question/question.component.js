@@ -2,9 +2,11 @@ import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { CheckAnswersService } from '../../services/check-answers.service';
 var QuestionComponent = /** @class */ (function () {
-    function QuestionComponent(data, fb) {
+    function QuestionComponent(data, checkAnswers, fb) {
         this.data = data;
+        this.checkAnswers = checkAnswers;
         this.fb = fb;
         this.numero = 0;
     }
@@ -29,8 +31,25 @@ var QuestionComponent = /** @class */ (function () {
         var selectedAnswers = this.answers.value.posibleAnswers
             .map(function (checked, index) { return checked ? _this.posibleAnswers[index] : null; })
             .filter(function (value) { return value !== null; });
-        console.log("Selected Answers");
+        console.log("Given question:");
+        var question = this.message[this.numero].question;
+        console.log(question);
+        console.log("Selected Answers:");
         console.log(selectedAnswers);
+        var payload = {
+            question: question,
+            answers: selectedAnswers
+        };
+        console.log(payload);
+        new Promise(function (resolve, reject) {
+            var res = _this.checkAnswers.check_anwers(JSON.stringify(payload))
+                .then(function (res) {
+                console.log("Graded answers response from lambda: ");
+                console.log(res);
+            }, function (msg) {
+                reject(msg);
+            });
+        });
     };
     QuestionComponent = tslib_1.__decorate([
         Component({
@@ -39,6 +58,7 @@ var QuestionComponent = /** @class */ (function () {
             styleUrls: ['./question.component.css']
         }),
         tslib_1.__metadata("design:paramtypes", [DataService,
+            CheckAnswersService,
             FormBuilder])
     ], QuestionComponent);
     return QuestionComponent;
