@@ -18,6 +18,10 @@ import { QuestionComponent } from './components/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckAnswersService } from './services/check-answers.service';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
+import { GetScoreboardService } from './services/get-scoreboard.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -41,6 +45,7 @@ import { ScoreBoardComponent } from './components/score-board/score-board.compon
   providers: [
     GetQuestionsSerivceService,
     CheckAnswersService,
+    GetScoreboardService,
     { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
   ],
   bootstrap: [AppComponent]

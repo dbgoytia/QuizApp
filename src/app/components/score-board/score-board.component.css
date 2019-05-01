@@ -1,0 +1,10 @@
+table {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+th {
+  height: 25%;
+  width: 33%;
+}

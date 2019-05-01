@@ -16,6 +16,8 @@ import { JsonPipePipe } from './pipes/json-pipe.pipe';
 import { QuestionComponent } from './components/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckAnswersService } from './services/check-answers.service';
+import { ScoreBoardComponent } from './components/score-board/score-board.component';
+import { GetScoreboardService } from './services/get-scoreboard.service';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -26,7 +28,8 @@ var AppModule = /** @class */ (function () {
                 InputformComponent,
                 QuestionsComponent,
                 JsonPipePipe,
-                QuestionComponent
+                QuestionComponent,
+                ScoreBoardComponent
             ],
             imports: [
                 MatSelectModule,
@@ -41,6 +44,7 @@ var AppModule = /** @class */ (function () {
             providers: [
                 GetQuestionsSerivceService,
                 CheckAnswersService,
+                GetScoreboardService,
                 { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
             ],
             bootstrap: [AppComponent]
