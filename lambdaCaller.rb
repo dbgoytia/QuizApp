@@ -7,7 +7,7 @@ before do
    content_type :json
    headers 'Access-Control-Allow-Origin' => '*',
             'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST'],
-            'Access-Control-Allow-Headers' => ['Content-Type', 'Authorization']
+            'Access-Control-Allow-Headers' => ['Content-Type', 'Authorization', 'X-PINGOTHER']
 
 end
 
