@@ -28,7 +28,7 @@ export class QuestionsComponent implements OnInit {
 
 
   async loading(){
-    await this.delay(9000);
+    await this.delay(3000);
     console.log("Loading...");
     this.goto('question');
   }

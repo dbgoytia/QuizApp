@@ -22,6 +22,8 @@ var QuestionComponent = /** @class */ (function () {
         this.answers = this.fb.group({
             posibleAnswers: new FormArray(formControls)
         });
+        this.total_questions = this.message.length;
+        console.log(this.total_questions);
     };
     QuestionComponent.prototype.nextQuestion = function () {
         this.numero += 1;
@@ -40,6 +42,7 @@ var QuestionComponent = /** @class */ (function () {
             question: question,
             answers: selectedAnswers
         };
+        console.log("Payload");
         console.log(payload);
         new Promise(function (resolve, reject) {
             var res = _this.checkAnswers.check_anwers(JSON.stringify(payload))

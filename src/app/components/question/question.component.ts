@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit {
   numero: number = 0;
   posibleAnswers: any;
   answers: FormGroup;
+  total_questions: number;
 
   constructor(
     private data: DataService,
@@ -35,6 +36,8 @@ export class QuestionComponent implements OnInit {
       posibleAnswers: new FormArray(formControls)
     });
 
+    this.total_questions = this.message.length;
+    console.log(this.total_questions);
   }
 
   nextQuestion(){
@@ -58,6 +61,7 @@ export class QuestionComponent implements OnInit {
       answers: selectedAnswers
     }
 
+    console.log("Payload");
     console.log(payload);
 
 
