@@ -10,7 +10,7 @@ import { EntrypointComponent } from './components/entrypoint/entrypoint.componen
 
 const APP_ROUTES: Routes = [
 
-  { path: 'entrypoint', component: EntrypointComponent}, 
+  { path: 'entrypoint', component: EntrypointComponent},
   { path: 'principal', component: InputformComponent },
   { path: 'questions', component: QuestionsComponent },
   { path: 'question', component: QuestionComponent },
