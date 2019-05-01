@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckAnswersService } from './services/check-answers.service';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { GetScoreboardService } from './services/get-scoreboard.service';
+import { EntrypointComponent } from './components/entrypoint/entrypoint.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -29,7 +30,8 @@ var AppModule = /** @class */ (function () {
                 QuestionsComponent,
                 JsonPipePipe,
                 QuestionComponent,
-                ScoreBoardComponent
+                ScoreBoardComponent,
+                EntrypointComponent
             ],
             imports: [
                 MatSelectModule,
