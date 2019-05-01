@@ -19,12 +19,6 @@ export class CheckAnswersService {
   check_anwers(params: any): Promise<any> {
     console.log("Check answers: " + params);
     console.log(typeof params);
-    let obj = {
-                "question":"Which of the following are desing principles that should be used when implementing the Convention Over Configuration desing patternr?",
-                "answers":["Anticipate needs",
-                           "Let them say it once",
-                           "Provide template"]
-              }
     //let obj = '{"question":"Which of the following are desing principles that should be used when implementing the Convention Over Configuration desing patternr?", "answers":["Anticipate needs","Let them say it once", "Provide template"]}'
     let URL = `https://calm-woodland-44552.herokuapp.com/checkAnswers`;
     let promise = new Promise ((resolve, reject) => {

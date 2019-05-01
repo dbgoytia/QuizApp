@@ -27,6 +27,7 @@ var QuestionComponent = /** @class */ (function () {
     };
     QuestionComponent.prototype.nextQuestion = function () {
         this.numero += 1;
+        this.posibleAnswers = this.message[this.numero].posibleAnswer;
     };
     QuestionComponent.prototype.submit = function () {
         var _this = this;
@@ -34,12 +35,12 @@ var QuestionComponent = /** @class */ (function () {
             .map(function (checked, index) { return checked ? _this.posibleAnswers[index] : null; })
             .filter(function (value) { return value !== null; });
         console.log("Given question:");
-        var question = this.message[this.numero].question;
-        console.log(question);
+        this.question = this.message[this.numero].question;
+        console.log(this.question);
         console.log("Selected Answers:");
         console.log(selectedAnswers);
         var payload = {
-            question: question,
+            question: this.question,
             answers: selectedAnswers
         };
         console.log("Payload");
@@ -49,6 +50,11 @@ var QuestionComponent = /** @class */ (function () {
                 .then(function (res) {
                 console.log("Graded answers response from lambda: ");
                 console.log(res);
+                _this.graded_answers = JSON.stringify(res.gradedAnswers);
+                _this.correct_answers = JSON.stringify(res.correctAnswers);
+                console.log("Graded Answers:");
+                console.log(_this.graded_answers);
+                console.log(_this.correct_answers);
             }, function (msg) {
                 reject(msg);
             });

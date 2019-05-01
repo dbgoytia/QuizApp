@@ -16,12 +16,6 @@ var CheckAnswersService = /** @class */ (function () {
         var _this = this;
         console.log("Check answers: " + params);
         console.log(typeof params);
-        var obj = {
-            "question": "Which of the following are desing principles that should be used when implementing the Convention Over Configuration desing patternr?",
-            "answers": ["Anticipate needs",
-                "Let them say it once",
-                "Provide template"]
-        };
         //let obj = '{"question":"Which of the following are desing principles that should be used when implementing the Convention Over Configuration desing patternr?", "answers":["Anticipate needs","Let them say it once", "Provide template"]}'
         var URL = "https://calm-woodland-44552.herokuapp.com/checkAnswers";
         var promise = new Promise(function (resolve, reject) {

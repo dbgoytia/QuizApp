@@ -16,14 +16,31 @@
       </form>
       <button type="button"
        name="button"
-       (click)="submit()">Submit</button>
+       (click)="submit()">Check</button>
+    </div>
+  </div>
+</div>
+
+<button type="button"
+ name="button"
+ (click)="nextQuestion()">Next Question</button>
+
+<br>
+
+<div class="row">
+  <h5>Feedback: </h5>
+  <div class="card" style = "width: 100%;">
+    <div class="card-body">
+      <label> {{
+        graded_answers }}</label>
+      <label>
+        {{ correct_answers }}
+      </label>
     </div>
   </div>
 </div>
 
 
-<button type="button"
- name="button"
- (click)="nextQuestion()">Next Question</button>
+
 
 </html>

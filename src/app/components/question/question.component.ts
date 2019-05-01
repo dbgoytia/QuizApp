@@ -16,6 +16,9 @@ export class QuestionComponent implements OnInit {
   posibleAnswers: any;
   answers: FormGroup;
   total_questions: number;
+  graded_answers: any;
+  correct_answers: any;
+  question: any;
 
   constructor(
     private data: DataService,
@@ -42,6 +45,7 @@ export class QuestionComponent implements OnInit {
 
   nextQuestion(){
     this.numero += 1;
+    this.posibleAnswers = this.message[this.numero].posibleAnswer;
   }
 
   submit(){
@@ -50,14 +54,14 @@ export class QuestionComponent implements OnInit {
     .filter(value => value !== null );
 
     console.log("Given question:");
-    let question = this.message[this.numero].question;
-    console.log(question);
+    this.question = this.message[this.numero].question;
+    console.log(this.question);
 
     console.log("Selected Answers:");
     console.log(selectedAnswers);
 
     let payload = {
-      question: question,
+      question: this.question,
       answers: selectedAnswers
     }
 
@@ -71,6 +75,11 @@ export class QuestionComponent implements OnInit {
         res =>{
           console.log("Graded answers response from lambda: ");
           console.log(res);
+          this.graded_answers = JSON.stringify(res.gradedAnswers);
+          this.correct_answers = JSON.stringify(res.correctAnswers);
+          console.log("Graded Answers:");
+          console.log(this.graded_answers)
+          console.log(this.correct_answers);
         },
         msg => {
           reject(msg)
