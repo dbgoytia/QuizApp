@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-<form>
-
-  <!--Input for player's name-->
-  <div class="form-group">
-    <label for="inputName">Please, tell us your name</label>
-    <input type="text" id="username" class="form-control" placeholder="Player's name">
-    <small class="form-text text-muted">Player's name to display.</small>
-  </div>
-
-  <hr>
-
-  <!--Input for questions -->
-  <div class="form-group">
-    <label for="inputQuestions">How many questions do you want to play with?</label>
-    <mat-slider
-    thumbLabel
-    [displayWith]="formatLabel"
-    tickInterval="1000"
-    min="1"
-    max="10"
-    #questions (input)="questionNumber($event)"></mat-slider>
-  </div>
-
-
-  <hr>
-
-  <!-- Get questions and store player's name -->
-    <div class="container">
-      <button
-      type="button" class="btn btn-outline-success" style="float: left"
-      (click) = "getQuestions(); gotoQuestions('scoreboard');">
-      Scoreboard</button>
-
-    <!-- Get questions and store player's name -->
-      <button
-      type="button"
-      class="btn btn-outline-success"
-      style="float: right"
-      (click) = "getQuestions(); gotoQuestions('questions');">
-      Start</button>
+<body>
+  <img src="../../../assets/cat.jpg" id="bg" alt="">
+  <form>
+    <!--Input for player's name-->
+    <div class="form-group">
+      <label for="inputName">Please, tell us your name</label>
+      <input type="text" id="username" class="form-control" placeholder="Player's name">
+      <small class="form-text text-muted">Player's name to display.</small>
     </div>
-
-
-
-
-</form>
+    <hr>
+    <!--Input for questions -->
+    <div class="form-group">
+      <label for="inputQuestions">How many questions do you want to play with?</label>
+      <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="1000"
+      min="1"
+      max="10"
+      #questions (input)="questionNumber($event)"></mat-slider>
+    </div>
+    <hr>
+    <!-- Get questions and store player's name -->
+      <div class="container">
+        <button
+        type="button" class="btn btn-outline-success" style="float: left"
+        (click) = "getQuestions(); gotoQuestions('scoreboard');">
+        Scoreboard</button>
+      <!-- Get questions and store player's name -->
+        <button
+        type="button"
+        class="btn btn-outline-success"
+        style="float: right"
+        (click) = "getQuestions(); gotoQuestions('questions');">
+        Start</button>
+      </div>
+  </form>
+</body>

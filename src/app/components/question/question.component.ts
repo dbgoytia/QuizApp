@@ -3,6 +3,8 @@ import { DataService } from '../../services/data.service';
 import { JsonPipePipe } from '../../pipes/json-pipe.pipe';
 import { FormBuilder, FormGroup, FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CheckAnswersService } from '../../services/check-answers.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-question',
@@ -23,7 +25,8 @@ export class QuestionComponent implements OnInit {
   constructor(
     private data: DataService,
     private checkAnswers: CheckAnswersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,8 +47,15 @@ export class QuestionComponent implements OnInit {
   }
 
   nextQuestion(){
-    this.numero += 1;
-    this.posibleAnswers = this.message[this.numero].posibleAnswer;
+    if(this.numero + 1  < this.total_questions){
+      this.numero += 1;
+      console.log(this.numero);
+      console.log(this.total_questions);
+      this.posibleAnswers = this.message[this.numero].posibleAnswer;
+    }else {
+      console.log("ya es toda wey!");
+      this.goto('end');
+    }
   }
 
   submit(){
@@ -86,6 +96,11 @@ export class QuestionComponent implements OnInit {
         }
       );
     });
+  }
+
+  goto(pagename:string){
+    console.log('Moving to page: ' + pagename);
+    this.router.navigate([pagename]);
   }
 
 

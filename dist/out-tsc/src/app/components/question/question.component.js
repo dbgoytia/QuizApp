@@ -3,11 +3,13 @@ import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { CheckAnswersService } from '../../services/check-answers.service';
+import { Router } from '@angular/router';
 var QuestionComponent = /** @class */ (function () {
-    function QuestionComponent(data, checkAnswers, fb) {
+    function QuestionComponent(data, checkAnswers, fb, router) {
         this.data = data;
         this.checkAnswers = checkAnswers;
         this.fb = fb;
+        this.router = router;
         this.numero = 0;
     }
     QuestionComponent.prototype.ngOnInit = function () {
@@ -26,8 +28,16 @@ var QuestionComponent = /** @class */ (function () {
         console.log(this.total_questions);
     };
     QuestionComponent.prototype.nextQuestion = function () {
-        this.numero += 1;
-        this.posibleAnswers = this.message[this.numero].posibleAnswer;
+        if (this.numero + 1 < this.total_questions) {
+            this.numero += 1;
+            console.log(this.numero);
+            console.log(this.total_questions);
+            this.posibleAnswers = this.message[this.numero].posibleAnswer;
+        }
+        else {
+            console.log("ya es toda wey!");
+            this.goto('end');
+        }
     };
     QuestionComponent.prototype.submit = function () {
         var _this = this;
@@ -60,6 +70,10 @@ var QuestionComponent = /** @class */ (function () {
             });
         });
     };
+    QuestionComponent.prototype.goto = function (pagename) {
+        console.log('Moving to page: ' + pagename);
+        this.router.navigate([pagename]);
+    };
     QuestionComponent = tslib_1.__decorate([
         Component({
             selector: 'app-question',
@@ -68,7 +82,8 @@ var QuestionComponent = /** @class */ (function () {
         }),
         tslib_1.__metadata("design:paramtypes", [DataService,
             CheckAnswersService,
-            FormBuilder])
+            FormBuilder,
+            Router])
     ], QuestionComponent);
     return QuestionComponent;
 }());

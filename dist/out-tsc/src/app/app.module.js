@@ -19,6 +19,7 @@ import { CheckAnswersService } from './services/check-answers.service';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { GetScoreboardService } from './services/get-scoreboard.service';
 import { EntrypointComponent } from './components/entrypoint/entrypoint.component';
+import { EndComponent } from './components/end/end.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -31,7 +32,8 @@ var AppModule = /** @class */ (function () {
                 JsonPipePipe,
                 QuestionComponent,
                 ScoreBoardComponent,
-                EntrypointComponent
+                EntrypointComponent,
+                EndComponent
             ],
             imports: [
                 MatSelectModule,

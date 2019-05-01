@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetScoreboardService } from '../../services/get-scoreboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-score-board',
@@ -11,7 +12,8 @@ export class ScoreBoardComponent implements OnInit {
   scoreboard: any;
 
   constructor(
-    private getScoreboardService :GetScoreboardService
+    private getScoreboardService :GetScoreboardService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,5 +34,8 @@ export class ScoreBoardComponent implements OnInit {
     });
   }
 
-
+  goto(pagename:string){
+    console.log('Moving to page: ' + pagename);
+    this.router.navigate([pagename]);
+  }
 }
