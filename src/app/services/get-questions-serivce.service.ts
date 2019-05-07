@@ -37,4 +37,11 @@ export class GetQuestionsSerivceService {
     return promise;
   }
 
+  postResults(entry:any){
+    let URL = 'https://calm-woodland-44552.herokuapp.com/insertScore';
+    return this.httpClient.post(URL, entry);
+  }
+
+
+
 }

@@ -46,6 +46,8 @@ export class QuestionComponent implements OnInit {
 
     this.total_questions = this.message.length;
     console.log(this.total_questions);
+
+    this.storeScore.changeTotalQuestions(this.total_questions);
   }
 
   nextQuestion(){
@@ -58,7 +60,7 @@ export class QuestionComponent implements OnInit {
       this.posibleAnswers = this.message[this.numero].posibleAnswer;
       document.getElementById('feedback').style.opacity = '0.5';
     }else {
-      this.storeScore.changeMessage(this.score + "/" + this.total_questions * 10);
+      this.storeScore.changeMessage(this.score);
       this.storeScore.currentMessage.subscribe(message => {
         console.log("Score stored: " + message);
       });

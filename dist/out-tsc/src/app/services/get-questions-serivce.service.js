@@ -29,6 +29,10 @@ var GetQuestionsSerivceService = /** @class */ (function () {
         });
         return promise;
     };
+    GetQuestionsSerivceService.prototype.postResults = function (entry) {
+        var URL = 'https://calm-woodland-44552.herokuapp.com/insertScore';
+        return this.httpClient.post(URL, entry);
+    };
     GetQuestionsSerivceService = tslib_1.__decorate([
         Injectable({
             providedIn: 'root'

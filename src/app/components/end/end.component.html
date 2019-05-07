@@ -6,14 +6,14 @@
 
     <div class="player-info">
       <h4>Player name: {{ players_name }}</h4>
-      <h4>Score obtained: {{ score }}</h4>
+      <h4>Score obtained: {{ score }} / {{ totalPossibleScore }}</h4>
     </div>
 
     <div class="text-right">
       <button type="button"
        name="button"
        class="btn btn-outline-success"
-       (click)="goto('principal')">Main page</button>
+       (click)="storeScores(); goto('principal')">Save and quit</button>
     </div>
 
     <br>
@@ -39,5 +39,5 @@
     </div>
 
   </div>
-  
+
 </html>

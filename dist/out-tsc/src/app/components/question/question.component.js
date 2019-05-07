@@ -29,6 +29,7 @@ var QuestionComponent = /** @class */ (function () {
         });
         this.total_questions = this.message.length;
         console.log(this.total_questions);
+        this.storeScore.changeTotalQuestions(this.total_questions);
     };
     QuestionComponent.prototype.nextQuestion = function () {
         if (this.numero + 1 < this.total_questions) {
@@ -41,7 +42,7 @@ var QuestionComponent = /** @class */ (function () {
             document.getElementById('feedback').style.opacity = '0.5';
         }
         else {
-            this.storeScore.changeMessage(this.score + "/" + this.total_questions * 10);
+            this.storeScore.changeMessage(this.score);
             this.storeScore.currentMessage.subscribe(function (message) {
                 console.log("Score stored: " + message);
             });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayersNameService } from '../../services/players-name.service';
 import { StoreScoreService } from '../../services/store-score.service';
+import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
 import { Router } from '@angular/router';
 
 
@@ -13,16 +14,21 @@ export class EndComponent implements OnInit {
 
   players_name: any;
   score: any;
+  totalQuestions: any;
+  totalPossibleScore: any;
 
   constructor(
     private players_name_service: PlayersNameService,
     private storeScore: StoreScoreService,
+    private questionsService: GetQuestionsSerivceService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.updateName();
     this.updateScore();
+    this.updateTotalQuestions();
+    // POst resutls somewhere in here
   }
 
   updateName(){
@@ -32,10 +38,19 @@ export class EndComponent implements OnInit {
     });
   }
 
+
   updateScore(){
     this.storeScore.currentMessage.subscribe(message => {
       console.log("Score obtained: " + message);
       this.score = message;
+    });
+  }
+
+  updateTotalQuestions(){
+    this.storeScore.totalQuestions.subscribe(message => {
+      console.log("Total questions: " + message);
+      this.totalQuestions = message;
+      this.totalPossibleScore = this.totalQuestions * 10;
     });
   }
 
@@ -46,6 +61,10 @@ export class EndComponent implements OnInit {
 
   sendSMS(){
     console.log("Send SMS button clicked ");
+  }
+
+  storeScores(){
+    console.log("Save and quit button clicked");
   }
 
 }

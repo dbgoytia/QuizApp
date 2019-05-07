@@ -5,9 +5,14 @@ var StoreScoreService = /** @class */ (function () {
     function StoreScoreService() {
         this.messageSource = new BehaviorSubject([]);
         this.currentMessage = this.messageSource.asObservable();
+        this.totalQuestionsSource = new BehaviorSubject([]);
+        this.totalQuestions = this.totalQuestionsSource.asObservable();
     }
     StoreScoreService.prototype.changeMessage = function (data) {
         this.messageSource.next(data);
+    };
+    StoreScoreService.prototype.changeTotalQuestions = function (data) {
+        this.totalQuestionsSource.next(data);
     };
     StoreScoreService = tslib_1.__decorate([
         Injectable({
