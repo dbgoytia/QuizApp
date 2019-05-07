@@ -11,6 +11,7 @@ var QuestionComponent = /** @class */ (function () {
         this.fb = fb;
         this.router = router;
         this.numero = 0;
+        this.score = 0;
     }
     QuestionComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -29,18 +30,22 @@ var QuestionComponent = /** @class */ (function () {
     };
     QuestionComponent.prototype.nextQuestion = function () {
         if (this.numero + 1 < this.total_questions) {
+            document.getElementById('checkButton').disabled = false;
+            document.getElementById('nextQuestionButton').disabled = true;
             this.numero += 1;
             console.log(this.numero);
             console.log(this.total_questions);
             this.posibleAnswers = this.message[this.numero].posibleAnswer;
         }
         else {
-            console.log("ya es toda wey!");
+            console.log("End of quiz.");
             this.goto('end');
         }
     };
     QuestionComponent.prototype.submit = function () {
         var _this = this;
+        document.getElementById('checkButton').disabled = true;
+        document.getElementById('nextQuestionButton').disabled = false;
         var selectedAnswers = this.answers.value.posibleAnswers
             .map(function (checked, index) { return checked ? _this.posibleAnswers[index] : null; })
             .filter(function (value) { return value !== null; });
@@ -60,6 +65,10 @@ var QuestionComponent = /** @class */ (function () {
                 .then(function (res) {
                 console.log("Graded answers response from lambda: ");
                 console.log(res);
+                console.log("Score: " + _this.score);
+                if (res.isCorrect == true)
+                    _this.score += 10;
+                console.log("Score: " + _this.score);
                 _this.graded_answers = JSON.stringify(res.gradedAnswers);
                 _this.correct_answers = JSON.stringify(res.correctAnswers);
                 console.log("Graded Answers:");

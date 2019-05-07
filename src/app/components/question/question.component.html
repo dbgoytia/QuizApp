@@ -14,18 +14,19 @@
                 {{ posibleAnswers[i] }}
             </ul>
       </form>
-      <button type="button"
-       name="button"
-       (click)="submit()">Check</button>
+      <div class="text-right">
+        <button type="button"
+         name="button"
+         class="btn btn-outline-success"
+         id="checkButton"
+         (click)="submit()">Check</button>
+      </div>
     </div>
   </div>
 </div>
 
-<button type="button"
- name="button"
- (click)="nextQuestion()">Next Question</button>
-
 <br>
+
 
 <div class="row">
   <h5>Feedback: </h5>
@@ -37,6 +38,16 @@
   </div>
 </div>
 
+<br>
+
+<div class="text-right">
+  <button type="button"
+   name="button"
+   class="btn btn-outline-primary"
+   id="nextQuestionButton"
+   disabled=true
+   (click)="nextQuestion()">Next Question</button>
+</div>
 
 
 

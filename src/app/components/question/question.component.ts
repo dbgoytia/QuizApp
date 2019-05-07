@@ -21,6 +21,7 @@ export class QuestionComponent implements OnInit {
   graded_answers: any;
   correct_answers: any;
   question: any;
+  score: number = 0;
 
   constructor(
     private data: DataService,
@@ -48,17 +49,24 @@ export class QuestionComponent implements OnInit {
 
   nextQuestion(){
     if(this.numero + 1  < this.total_questions){
+      (<HTMLInputElement> document.getElementById('checkButton')).disabled = false;
+      (<HTMLInputElement> document.getElementById('nextQuestionButton')).disabled = true;
       this.numero += 1;
       console.log(this.numero);
       console.log(this.total_questions);
       this.posibleAnswers = this.message[this.numero].posibleAnswer;
     }else {
-      console.log("ya es toda wey!");
+      console.log("End of quiz.");
       this.goto('end');
     }
   }
 
   submit(){
+
+    (<HTMLInputElement> document.getElementById('checkButton')).disabled = true;
+    (<HTMLInputElement> document.getElementById('nextQuestionButton')).disabled = false;
+
+
     const selectedAnswers = this.answers.value.posibleAnswers
     .map((checked, index) => checked ? this.posibleAnswers[index] : null)
     .filter(value => value !== null );
@@ -85,6 +93,9 @@ export class QuestionComponent implements OnInit {
         res =>{
           console.log("Graded answers response from lambda: ");
           console.log(res);
+          console.log("Score: " + this.score);
+          if ( res.isCorrect == true ) this.score += 10;
+          console.log("Score: " + this.score);
           this.graded_answers = JSON.stringify(res.gradedAnswers);
           this.correct_answers = JSON.stringify(res.correctAnswers);
           console.log("Graded Answers:");
@@ -96,6 +107,8 @@ export class QuestionComponent implements OnInit {
         }
       );
     });
+
+
   }
 
   goto(pagename:string){
