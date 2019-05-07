@@ -3,6 +3,7 @@ import { PlayersNameService } from '../../services/players-name.service';
 import { StoreScoreService } from '../../services/store-score.service';
 import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
 import { Router } from '@angular/router';
+import { PostScoreService } from '../../services/post-score.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class EndComponent implements OnInit {
     private players_name_service: PlayersNameService,
     private storeScore: StoreScoreService,
     private questionsService: GetQuestionsSerivceService,
-    private router: Router
+    private router: Router,
+    private insertScore: PostScoreService
   ) { }
 
   ngOnInit() {
@@ -65,6 +67,25 @@ export class EndComponent implements OnInit {
 
   storeScores(){
     console.log("Save and quit button clicked");
+
+    let payload = {
+      initials: this.players_name,
+      questions: this.totalQuestions,
+      score: this.score
+    };
+
+    new Promise ((resolve, reject) =>{
+      let res = this.insertScore.insert_score(JSON.stringify(payload))
+      .then(
+        res =>{
+          console.log("Success Score Insertion in Database");
+          console.log(res);
+        },
+        msg => {
+          reject(msg)
+        }
+      );
+    });
   }
 
 }
