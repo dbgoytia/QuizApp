@@ -3,6 +3,7 @@ import { GetQuestionsSerivceService } from '../../services/get-questions-serivce
 import { Router } from '@angular/router';
 import { AppGlobal } from '../../app.global';
 import { DataService } from '../../services/data.service';
+import { PlayersNameService } from '../../services/players-name.service';
 
 @Component({
   selector: 'app-inputform',
@@ -24,6 +25,7 @@ export class InputformComponent implements OnInit {
     private getQuestionsSerivceService:GetQuestionsSerivceService,
     private router: Router,
     private globals: AppGlobal,
+    private players_name_service: PlayersNameService,
     private data: DataService) { }
 
   ngOnInit() {
@@ -31,7 +33,6 @@ export class InputformComponent implements OnInit {
   }
 
   public getQuestions() : any{
-    console.log((document.getElementById('username') as HTMLInputElement).value);
     console.log('Questions requested (questions) = ' + this.numberOfQuestions);
     new Promise ((resolve, reject) => {
       let _res = this.getQuestionsSerivceService.get_questions(this.numberOfQuestions)
@@ -70,6 +71,13 @@ export class InputformComponent implements OnInit {
 
   newMessage(message: any){
     this.data.changeMessage(message);
+  }
+
+  addPlayerName(){
+    this.players_name_service.changeMessage((<HTMLInputElement>document.getElementById('username')).value);
+    this.players_name_service.currentMessage.subscribe(message => {
+      console.log("Player name stored: " + message);
+    });
   }
 
 

@@ -4,12 +4,14 @@ import { DataService } from '../../services/data.service';
 import { FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { CheckAnswersService } from '../../services/check-answers.service';
 import { Router } from '@angular/router';
+import { StoreScoreService } from '../../services/store-score.service';
 var QuestionComponent = /** @class */ (function () {
-    function QuestionComponent(data, checkAnswers, fb, router) {
+    function QuestionComponent(data, checkAnswers, fb, router, storeScore) {
         this.data = data;
         this.checkAnswers = checkAnswers;
         this.fb = fb;
         this.router = router;
+        this.storeScore = storeScore;
         this.numero = 0;
         this.score = 0;
     }
@@ -36,14 +38,22 @@ var QuestionComponent = /** @class */ (function () {
             console.log(this.numero);
             console.log(this.total_questions);
             this.posibleAnswers = this.message[this.numero].posibleAnswer;
+            document.getElementById('feedback').style.opacity = '0.5';
         }
         else {
-            console.log("End of quiz.");
+            this.storeScore.changeMessage(this.score + "/" + this.total_questions * 10);
+            this.storeScore.currentMessage.subscribe(function (message) {
+                console.log("Score stored: " + message);
+            });
             this.goto('end');
         }
     };
+    QuestionComponent.prototype.makeFeedBackReappear = function () {
+        document.getElementById('feedback').style.opacity = '1';
+    };
     QuestionComponent.prototype.submit = function () {
         var _this = this;
+        this.makeFeedBackReappear();
         document.getElementById('checkButton').disabled = true;
         document.getElementById('nextQuestionButton').disabled = false;
         var selectedAnswers = this.answers.value.posibleAnswers
@@ -92,7 +102,8 @@ var QuestionComponent = /** @class */ (function () {
         tslib_1.__metadata("design:paramtypes", [DataService,
             CheckAnswersService,
             FormBuilder,
-            Router])
+            Router,
+            StoreScoreService])
     ], QuestionComponent);
     return QuestionComponent;
 }());

@@ -4,11 +4,13 @@ import { GetQuestionsSerivceService } from '../../services/get-questions-serivce
 import { Router } from '@angular/router';
 import { AppGlobal } from '../../app.global';
 import { DataService } from '../../services/data.service';
+import { PlayersNameService } from '../../services/players-name.service';
 var InputformComponent = /** @class */ (function () {
-    function InputformComponent(getQuestionsSerivceService, router, globals, data) {
+    function InputformComponent(getQuestionsSerivceService, router, globals, players_name_service, data) {
         this.getQuestionsSerivceService = getQuestionsSerivceService;
         this.router = router;
         this.globals = globals;
+        this.players_name_service = players_name_service;
         this.data = data;
         this.numberOfQuestions = 0;
     }
@@ -18,7 +20,6 @@ var InputformComponent = /** @class */ (function () {
     };
     InputformComponent.prototype.getQuestions = function () {
         var _this = this;
-        console.log(document.getElementById('username').value);
         console.log('Questions requested (questions) = ' + this.numberOfQuestions);
         new Promise(function (resolve, reject) {
             var _res = _this.getQuestionsSerivceService.get_questions(_this.numberOfQuestions)
@@ -52,6 +53,12 @@ var InputformComponent = /** @class */ (function () {
     InputformComponent.prototype.newMessage = function (message) {
         this.data.changeMessage(message);
     };
+    InputformComponent.prototype.addPlayerName = function () {
+        this.players_name_service.changeMessage(document.getElementById('username').value);
+        this.players_name_service.currentMessage.subscribe(function (message) {
+            console.log("Player name stored: " + message);
+        });
+    };
     InputformComponent = tslib_1.__decorate([
         Component({
             selector: 'app-inputform',
@@ -64,6 +71,7 @@ var InputformComponent = /** @class */ (function () {
         tslib_1.__metadata("design:paramtypes", [GetQuestionsSerivceService,
             Router,
             AppGlobal,
+            PlayersNameService,
             DataService])
     ], InputformComponent);
     return InputformComponent;

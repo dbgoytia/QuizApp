@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { JsonPipePipe } from '../../pipes/json-pipe.pipe';
 import { FormBuilder, FormGroup, FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CheckAnswersService } from '../../services/check-answers.service';
 import { Router } from '@angular/router';
+import { StoreScoreService } from '../../services/store-score.service';
 
 
 @Component({
@@ -27,7 +27,8 @@ export class QuestionComponent implements OnInit {
     private data: DataService,
     private checkAnswers: CheckAnswersService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private storeScore: StoreScoreService
   ) { }
 
   ngOnInit() {
@@ -55,13 +56,23 @@ export class QuestionComponent implements OnInit {
       console.log(this.numero);
       console.log(this.total_questions);
       this.posibleAnswers = this.message[this.numero].posibleAnswer;
+      document.getElementById('feedback').style.opacity = '0.5';
     }else {
-      console.log("End of quiz.");
+      this.storeScore.changeMessage(this.score + "/" + this.total_questions * 10);
+      this.storeScore.currentMessage.subscribe(message => {
+        console.log("Score stored: " + message);
+      });
       this.goto('end');
     }
   }
 
+  makeFeedBackReappear(){
+    document.getElementById('feedback').style.opacity = '1';
+  }
+
   submit(){
+
+    this.makeFeedBackReappear();
 
     (<HTMLInputElement> document.getElementById('checkButton')).disabled = true;
     (<HTMLInputElement> document.getElementById('nextQuestionButton')).disabled = false;

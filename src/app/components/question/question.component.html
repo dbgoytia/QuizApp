@@ -2,53 +2,59 @@
 <html lang="en" dir="ltr">
 
 
-<div class="row">
-  <p>{{ numero + 1 }} / {{ total_questions }}</p>
-  <div class="card" style="width: 100%;">
-    <div class="card-body">
-      <h4 class="card-title"> {{ message[numero].question }}</h4>
-      <form [formGroup]="answers" (ngSubmit)="submit()">
-            <ul formArrayName="posibleAnswers" *ngFor="let posible of answers.controls.posibleAnswers.controls; let i = index">
-              <input type="checkbox" [formControlName] = "i">
-              <span class="checkmark"></span>
-                {{ posibleAnswers[i] }}
-            </ul>
-      </form>
-      <div class="text-right">
-        <button type="button"
-         name="button"
-         class="btn btn-outline-success"
-         id="checkButton"
-         (click)="submit()">Check</button>
+<div class="container">
+    <div class="row">
+      <p>{{ numero + 1 }} / {{ total_questions }}</p>
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h4 class="card-title"> {{ message[numero].question }}</h4>
+          <form [formGroup]="answers" (ngSubmit)="submit()">
+                <ul formArrayName="posibleAnswers" *ngFor="let posible of answers.controls.posibleAnswers.controls; let i = index">
+                  <input type="checkbox" [formControlName] = "i">
+                  <span class="checkmark"></span>
+                    {{ posibleAnswers[i] }}
+                </ul>
+          </form>
+          <div class="text-right">
+            <button type="button"
+             name="button"
+             class="btn btn-outline-success"
+             id="checkButton"
+             (click)="submit()">Check</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+
+<div class="feedback" id="feedback">
+  <div class="row">
+    <h5>Feedback: </h5>
+    <div class="card" style = "width: 100%;">
+      <div class="card-body">
+        <label>Your ansers: </label>
+        <label>  {{ graded_answers }}  </label>
+        <br>
+        <label>Expected answer: </label>
+        <label>  {{ correct_answers }} </label>
       </div>
     </div>
   </div>
 </div>
 
-<br>
+    <br>
 
-
-<div class="row">
-  <h5>Feedback: </h5>
-  <div class="card" style = "width: 100%;">
-    <div class="card-body">
-      <label>  {{ graded_answers }}  </label>
-      <label>  {{ correct_answers }} </label>
+    <div class="text-right">
+      <button type="button"
+       name="button"
+       class="btn btn-outline-primary"
+       id="nextQuestionButton"
+       disabled=true
+       (click)="nextQuestion()">Next Question</button>
     </div>
+
+
   </div>
-</div>
-
-<br>
-
-<div class="text-right">
-  <button type="button"
-   name="button"
-   class="btn btn-outline-primary"
-   id="nextQuestionButton"
-   disabled=true
-   (click)="nextQuestion()">Next Question</button>
-</div>
-
-
-
 </html>

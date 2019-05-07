@@ -20,6 +20,8 @@ import { ScoreBoardComponent } from './components/score-board/score-board.compon
 import { GetScoreboardService } from './services/get-scoreboard.service';
 import { EntrypointComponent } from './components/entrypoint/entrypoint.component';
 import { EndComponent } from './components/end/end.component';
+import { PlayersNameService } from './services/players-name.service';
+import { StoreScoreService } from './services/store-score.service';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -49,6 +51,8 @@ var AppModule = /** @class */ (function () {
                 GetQuestionsSerivceService,
                 CheckAnswersService,
                 GetScoreboardService,
+                PlayersNameService,
+                StoreScoreService,
                 { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
             ],
             bootstrap: [AppComponent]
