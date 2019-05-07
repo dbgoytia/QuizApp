@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class PlayersNameService {
 
   private messageSource = new BehaviorSubject<any>([]);
   currentMessage = this.messageSource.asObservable();
