@@ -24,6 +24,10 @@ export class ScoreBoardComponent implements OnInit {
         res => {
           console.log("Answer returned from service");
           console.log(JSON.stringify(res));
+          for (let x in res) {
+            res[x].timestamp = res[x].timestamp.split(' +')[0];
+            console.log(res[x]);
+          }
           this.scoreboard = res;
         },
         msg => {

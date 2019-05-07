@@ -14,6 +14,10 @@ var ScoreBoardComponent = /** @class */ (function () {
                 .then(function (res) {
                 console.log("Answer returned from service");
                 console.log(JSON.stringify(res));
+                for (var x in res) {
+                    res[x].timestamp = res[x].timestamp.split(' +')[0];
+                    console.log(res[x]);
+                }
                 _this.scoreboard = res;
             }, function (msg) {
                 // Error happened
