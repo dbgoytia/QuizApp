@@ -5,13 +5,15 @@ import { StoreScoreService } from '../../services/store-score.service';
 import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
 import { Router } from '@angular/router';
 import { PostScoreService } from '../../services/post-score.service';
+import { SendSmsService } from '../../services/send-sms.service';
 var EndComponent = /** @class */ (function () {
-    function EndComponent(players_name_service, storeScore, questionsService, router, insertScore) {
+    function EndComponent(players_name_service, storeScore, questionsService, router, insertScore, sendMessage) {
         this.players_name_service = players_name_service;
         this.storeScore = storeScore;
         this.questionsService = questionsService;
         this.router = router;
         this.insertScore = insertScore;
+        this.sendMessage = sendMessage;
     }
     EndComponent.prototype.ngOnInit = function () {
         this.updateName();
@@ -46,7 +48,22 @@ var EndComponent = /** @class */ (function () {
         this.router.navigate([pagename]);
     };
     EndComponent.prototype.sendSMS = function () {
+        var _this = this;
         console.log("Send SMS button clicked ");
+        this.userNumber = "5521178096";
+        var payload = {
+            tel: this.userNumber,
+            score: this.score
+        };
+        new Promise(function (resolve, reject) {
+            var res = _this.sendMessage.send_sms(JSON.stringify(payload))
+                .then(function (res) {
+                console.log("Success SMS sent");
+                console.log(res);
+            }, function (msg) {
+                reject(msg);
+            });
+        });
     };
     EndComponent.prototype.storeScores = function () {
         var _this = this;
@@ -76,7 +93,8 @@ var EndComponent = /** @class */ (function () {
             StoreScoreService,
             GetQuestionsSerivceService,
             Router,
-            PostScoreService])
+            PostScoreService,
+            SendSmsService])
     ], EndComponent);
     return EndComponent;
 }());

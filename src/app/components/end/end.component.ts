@@ -4,6 +4,7 @@ import { StoreScoreService } from '../../services/store-score.service';
 import { GetQuestionsSerivceService } from '../../services/get-questions-serivce.service';
 import { Router } from '@angular/router';
 import { PostScoreService } from '../../services/post-score.service';
+import { SendSmsService } from '../../services/send-sms.service';
 
 
 @Component({
@@ -17,13 +18,15 @@ export class EndComponent implements OnInit {
   score: any;
   totalQuestions: any;
   totalPossibleScore: any;
+  userNumber: any;
 
   constructor(
     private players_name_service: PlayersNameService,
     private storeScore: StoreScoreService,
     private questionsService: GetQuestionsSerivceService,
     private router: Router,
-    private insertScore: PostScoreService
+    private insertScore: PostScoreService,
+    private sendMessage: SendSmsService
   ) { }
 
   ngOnInit() {
@@ -63,6 +66,26 @@ export class EndComponent implements OnInit {
 
   sendSMS(){
     console.log("Send SMS button clicked ");
+
+    this.userNumber = "5521178096"
+
+    let payload = {
+      tel: this.userNumber,
+      score: this.score
+    };
+
+    new Promise ((resolve, reject) =>{
+      let res = this.sendMessage.send_sms(JSON.stringify(payload))
+      .then(
+        res =>{
+          console.log("Success SMS sent");
+          console.log(res);
+        },
+        msg => {
+          reject(msg)
+        }
+      );
+    });
   }
 
   storeScores(){
