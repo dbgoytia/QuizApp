@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<button type="button"
+class="btn btn-outline-secondary btn-lg btn-block"
+name="button"
+(click)="goto('principal')"
+>Return</button>
+<div class="scoreboard">
+    <table class = "table table-hover table-bordered">
+      <thead class="table-info">
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let score of scoreboard">
+          <td>{{ score.initials }}</td>
+          <td>{{ score.score }}</td>
+          <td>{{ score.timestamp | date:'MM/dd/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+</html>

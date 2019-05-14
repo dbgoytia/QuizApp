@@ -1,0 +1,21 @@
+table {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+th {
+  height: 25%;
+  width: 33%;
+}
+
+thead {
+  font-family: "Courier New";
+  font-size: 18px;
+  text-align: center;
+}
+
+tbody{
+  font-family: "Courire New";
+  font-size: 14px;
+}

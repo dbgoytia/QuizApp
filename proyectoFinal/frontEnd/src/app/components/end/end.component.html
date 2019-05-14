@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <div class="container">
+    <h1>Score!</h1>
+
+    <div class="player-info">
+      <h4>Player name: {{ players_name }}</h4>
+      <h4>Score obtained: {{ score }} / {{ totalPossibleScore }}</h4>
+    </div>
+
+    <div class="text-right">
+      <button type="button"
+       name="button"
+       class="btn btn-outline-success"
+       (click)="storeScores(); goto('principal')">Save and quit</button>
+    </div>
+
+    <br>
+
+    <br>
+
+
+    <form>
+      <!--Input for player's name-->
+      <div class="form-group">
+        <label for="inputName">If you'd like, we can send your score via SMS</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Provide your cellphone (optional)."
+        name="userNumber"
+        [(ngModel)]="userNumber">
+      </div>
+    </form>
+
+    <br>
+
+    <div class="text-right">
+      <button type="button"
+       name="button"
+       class="btn btn-outline-info"
+       (click)="sendSMS()">Send SMS</button>
+    </div>
+
+  </div>
+
+</html>
