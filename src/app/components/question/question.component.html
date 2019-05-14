@@ -34,8 +34,10 @@
     <h5>Feedback: </h5>
     <div class="card" style = "width: 100%;">
       <div class="card-body">
-        <label>Your ansers: </label>
+        <label>Your anwsers: </label>
         <label>  {{ graded_answers }}  </label>
+        <br/>
+        <label *ngIf="graded_answers">{{ correct_answer ? " Correct! :)" : " Sorry, Incorrect :("}} </label>
         <br>
         <label>Expected answer: </label>
         <label>  {{ correct_answers }} </label>

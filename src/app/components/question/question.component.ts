@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
   correct_answers: any;
   question: any;
   score: number = 0;
+  correct_answer: any;
 
   constructor(
     private data: DataService,
@@ -38,7 +39,7 @@ export class QuestionComponent implements OnInit {
     console.log("Posible answers: ");
     console.log(this.message[this.numero].posibleAnswer);
     this.posibleAnswers = this.message[this.numero].posibleAnswer;
-    const formControls = this.posibleAnswers.map(control => new FormControl(false));
+    let formControls = this.posibleAnswers.map(control => new FormControl(false));
 
     this.answers = this.fb.group({
       posibleAnswers: new FormArray(formControls)
@@ -58,6 +59,10 @@ export class QuestionComponent implements OnInit {
       console.log(this.numero);
       console.log(this.total_questions);
       this.posibleAnswers = this.message[this.numero].posibleAnswer;
+      let formControls = this.posibleAnswers.map(control => new FormControl(false));
+      this.answers = this.fb.group({
+        posibleAnswers: new FormArray(formControls)
+      });
       document.getElementById('feedback').style.opacity = '0.5';
     }else {
       this.storeScore.changeMessage(this.score);
@@ -109,8 +114,10 @@ export class QuestionComponent implements OnInit {
           console.log("Score: " + this.score);
           if ( res.isCorrect == true ) this.score += 10;
           console.log("Score: " + this.score);
-          this.graded_answers = JSON.stringify(res.gradedAnswers);
-          this.correct_answers = JSON.stringify(res.correctAnswers);
+          const answerValue = Object.values(res.gradedAnswers);
+          const answerKey = Object.keys(res.gradedAnswers);
+          this.graded_answers = answerKey[0];
+          this.correct_answers = res.correctAnswers[0];
           console.log("Graded Answers:");
           console.log(this.graded_answers);
           console.log(this.correct_answers);
