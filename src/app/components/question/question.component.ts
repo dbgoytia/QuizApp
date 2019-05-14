@@ -24,6 +24,7 @@ export class QuestionComponent implements OnInit {
   score: number = 0;
   correct_answer: any;
 
+
   constructor(
     private data: DataService,
     private checkAnswers: CheckAnswersService,
@@ -116,6 +117,7 @@ export class QuestionComponent implements OnInit {
           console.log("Score: " + this.score);
           const answerValue = Object.values(res.gradedAnswers);
           const answerKey = Object.keys(res.gradedAnswers);
+          this.correct_answer = answerValue;
           this.graded_answers = answerKey[0];
           this.correct_answers = res.correctAnswers[0];
           console.log("Graded Answers:");
