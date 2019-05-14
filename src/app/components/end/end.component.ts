@@ -66,11 +66,10 @@ export class EndComponent implements OnInit {
 
   sendSMS(){
     console.log("Send SMS button clicked ");
-
-    this.userNumber = "5521178096"
+    console.log(this.userNumber);
 
     let payload = {
-      tel: this.userNumber,
+      tel: this.userNumber.toString(),
       score: this.score
     };
 

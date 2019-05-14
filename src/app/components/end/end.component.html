@@ -25,7 +25,12 @@
       <!--Input for player's name-->
       <div class="form-group">
         <label for="inputName">If you'd like, we can send your score via SMS</label>
-        <input type="text" id="username" class="form-control" placeholder="Provide your cellphone (optional).">
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Provide your cellphone (optional)."
+        name="userNumber"
+        [(ngModel)]="userNumber">
       </div>
     </form>
 
